@@ -27,7 +27,7 @@ export default function LoginForm() {
         onChange={handleChange}
         required
       />
-      <button>Accédez à votre espace</button>
+      <button>Accéder à mon espace</button>
     </form>
   );
 }
