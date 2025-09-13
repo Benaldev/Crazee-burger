@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../..";
+import { theme } from "../..";
 
 export default function TextInput({ value, onChange, Icon, ...extraProps }) {
   return (
