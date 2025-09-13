@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../..";
+import { theme } from "../../theme/index";
 
 export default function TextInput({ value, onChange, Icon, ...extraProps }) {
   return (
@@ -12,26 +12,26 @@ export default function TextInput({ value, onChange, Icon, ...extraProps }) {
 
 const InputStyled = styled.div`
   background-color: ${theme.colors.white};
-  border-radius: 5px;
+  border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
   padding: 18px 24px;
   margin: 18px 0;
 
   .icon {
-    font-size: 15px;
+    font-size: ${theme.fonts.sizes.P0};
     margin-right: 8px;
     color: ${theme.colors.greySemiDark};
   }
 
   input {
     border: none;
-    font-size: 15px;
+    font-size: ${theme.fonts.sizes.P0};
     color: ${theme.colors.dark};
-  }
 
-  &::placeholder {
-    background-color: ${theme.colors.white};
-    color: ${theme.colors.greyLight};
+    &::placeholder {
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.greyMedium};
+    }
   }
 `;
