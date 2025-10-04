@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import { theme } from "../../../../theme";
 
 export default function Menu() {
   const [menu, setMenu] = useState(fakeMenu2);
@@ -17,6 +18,7 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.div`
+  background: ${theme.colors.background_white};
   border: 1px solid red;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
