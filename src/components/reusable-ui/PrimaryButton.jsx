@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { theme } from "../../theme/index";
 
-export default function PrimaryButton({ label, Icon }) {
+export default function PrimaryButton({ label, Icon, className }) {
   return (
-    <PrimaryButtonStyled className="button-with-icon">
+    <PrimaryButtonStyled className={className}>
       <span>{label}</span>
       {Icon}
     </PrimaryButtonStyled>
@@ -28,14 +28,14 @@ const PrimaryButtonStyled = styled.button`
   background-color: ${theme.colors.primary};
   border: 1px solid ${theme.colors.primary};
 
-  &:hover:not(:disabled) {
-    color: ${theme.colors.white};
-    background-color: ${theme.colors.primary};
+  :hover {
+    color: ${theme.colors.primary};
+    background-color: ${theme.colors.white};
     border: 1px solid ${theme.colors.primary};
+    transition: all 200ms ease-out;
   }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  :active {
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.white};
   }
 `;

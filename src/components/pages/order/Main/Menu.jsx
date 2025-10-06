@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../../../theme";
 import Product from "./Product";
+import { formatPrice } from "../../../../utils/maths";
 
 export default function Menu() {
   const [menu, setMenu] = useState(fakeMenu2);
@@ -15,7 +16,7 @@ export default function Menu() {
             key={produit.id}
             title={produit.title}
             imageSource={produit.imageSource}
-            price={produit.price}
+            leftDescription={formatPrice(produit.price)}
           />
         );
       })}
@@ -25,10 +26,10 @@ export default function Menu() {
 
 const MenuStyled = styled.div`
   background: ${theme.colors.background_white};
-  border: 1px solid red;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
+  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
 `;
