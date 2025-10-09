@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Profile from "./Profile";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
-import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
+import ToastAdmin from "./ToastAdmin";
+import { toast } from "react-toastify";
 
 export default function NavbarRightSide({ username }) {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -32,7 +33,7 @@ export default function NavbarRightSide({ username }) {
         onToggle={displayToastNotification}
       />
       <Profile username={username} />
-      <ToastContainer className="toaster" bodyClassName="body-toast" />
+      <ToastAdmin />
     </NavbarRightSideStyle>
   );
 }
