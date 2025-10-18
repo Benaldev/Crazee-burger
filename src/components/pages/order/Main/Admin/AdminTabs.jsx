@@ -2,64 +2,39 @@ import styled from "styled-components";
 import Tab from "../../../../reusable-ui/Tab";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { theme } from "../../../../../theme";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
 import OrderContext from "../../../../../context/OrderContext";
 import { useContext } from "react";
+import { getTabsConfig } from "./getTabsConfig";
 
 export default function AdminTabs() {
   const {
     isCollapsed,
     setIsCollapsed,
-    isEditSelected,
-    setIsEditSelected,
-    isAddSelected,
-    setisAddSelected,
+    currentTabSelected,
+    setCurrentTabSelected,
   } = useContext(OrderContext);
 
   const selectTab = (tabeSelected) => {
     setIsCollapsed(false);
-
-    if (tabeSelected === "add") {
-      setIsEditSelected(false);
-      setisAddSelected(true);
-    }
-
-    if (tabeSelected === "edit") {
-      setIsEditSelected(true);
-      setisAddSelected(false);
-    }
+    setCurrentTabSelected(tabeSelected);
   };
 
-  const tabsConfig = [
-    {
-      label: "",
-      className: isCollapsed ? "is-active" : "",
-      Icon: isCollapsed ? <FiChevronUp /> : <FiChevronDown />,
-      onClick: () => setIsCollapsed(!isCollapsed),
-    },
-    {
-      label: "Ajouter un produit",
-      className: isAddSelected ? "is-active" : "",
-      Icon: <AiOutlinePlus />,
-      onClick: () => selectTab("add"),
-    },
-    {
-      label: "Modifier un produit",
-      className: isEditSelected ? "is-active" : "",
-      Icon: <MdModeEditOutline />,
-      onClick: () => selectTab("edit"),
-    },
-  ];
+  const tabs = getTabsConfig(currentTabSelected);
 
   return (
     <AdminTabsStyled>
-      {tabsConfig.map((tab) => (
+      <Tab
+        label=""
+        className={isCollapsed ? "is-active" : ""}
+        Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      />
+      {tabs.map((tab) => (
         <Tab
           label={tab.label}
           Icon={tab.Icon}
           className={tab.className}
-          onClick={tab.onClick}
+          onClick={() => selectTab(tab.index)}
         />
       ))}
     </AdminTabsStyled>
