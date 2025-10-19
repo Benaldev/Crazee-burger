@@ -23,5 +23,5 @@ const AdminPanelStyled = styled.div`
   border: 1px solid ${theme.colors.greyLight};
   box-shadow: ${theme.shadows.subtle};
   border-top: 1px solid ${theme.colors.greyLight};
-  box-shadow: 0 -6px 8px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: ${theme.shadows.subtle};
 `;
