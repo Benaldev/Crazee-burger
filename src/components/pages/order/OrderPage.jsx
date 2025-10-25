@@ -4,25 +4,30 @@ import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import { useState } from "react";
 import OrderContext from "../../../context/OrderContext";
+import { fakeMenu } from "../../../fakeData/fakeMenu";
 
 export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isAddSelected, setisAddSelected] = useState(true);
-  const [isEditSelected, setIsEditSelected] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [menu, setMenu] = useState(fakeMenu.MEDIUM);
+
+  const handleAdd = (newProduct) => {
+    const menuCopy = [...menu];
+    const menuUpdated = [newProduct, ...menuCopy];
+    setMenu(menuUpdated);
+  };
 
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,
     setIsCollapsed,
-    isEditSelected,
-    setIsEditSelected,
-    isAddSelected,
-    setisAddSelected,
     currentTabSelected,
     setCurrentTabSelected,
+    menu,
+    setMenu,
+    handleAdd,
   };
 
   return (

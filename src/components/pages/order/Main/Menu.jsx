@@ -1,12 +1,12 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { fakeMenu } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths";
 import Card from "../../../reusable-ui/Card";
+import OrderContext from "../../../../context/OrderContext";
+import { useContext } from "react";
 
 export default function Menu() {
-  const [menu, setMenu] = useState(fakeMenu.SMALL);
+  const { menu } = useContext(OrderContext);
 
   return (
     <MenuStyled className="menu">
