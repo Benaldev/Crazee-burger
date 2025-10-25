@@ -11,6 +11,5 @@ export default React.createContext({
   setCurrentTabSelected: () => {},
 
   menu: [],
-  setMenu: () => {},
   handleAdd: () => {},
 });
