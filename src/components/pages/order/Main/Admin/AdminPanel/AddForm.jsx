@@ -19,16 +19,15 @@ export default function AddForm() {
     e.preventDefault();
     const newProductToAdd = {
       ...newProduct,
-      id: new Date().getTime(),
+      id: crypto.randomUUID,
     };
 
     handleAdd(newProductToAdd);
   };
 
   const handleChange = (e) => {
-    const newValue = e.target.value;
-    const name = e.target.name;
-    setNewProduct({ ...newProduct, [name]: newValue });
+    const { name, value } = e.target;
+    setNewProduct({ ...newProduct, [name]: value });
   };
 
   //affichage
