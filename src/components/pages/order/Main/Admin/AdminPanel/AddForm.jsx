@@ -33,7 +33,13 @@ export default function AddForm() {
   //affichage
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <div className="images-preview">Aucune image</div>
+      <div className="images-preview">
+        {newProduct.imageSource ? (
+          <img src={newProduct.imageSource} alt={newProduct.title} />
+        ) : (
+          <div>Aucune image</div>
+        )}
+      </div>
       <div className="inputs-fields">
         <input
           name="title"
@@ -73,6 +79,16 @@ const AddFormStyled = styled.form`
   .images-preview {
     background: red;
     grid-area: 1 / 1 / 4 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 
   .inputs-fields {
