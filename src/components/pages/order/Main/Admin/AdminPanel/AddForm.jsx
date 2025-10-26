@@ -19,10 +19,11 @@ export default function AddForm() {
     e.preventDefault();
     const newProductToAdd = {
       ...newProduct,
-      id: crypto.randomUUID,
+      id: crypto.randomUUID(),
     };
 
     handleAdd(newProductToAdd);
+    setNewProduct(EMPTY_PRODUCT);
   };
 
   const handleChange = (e) => {
@@ -46,14 +47,14 @@ export default function AddForm() {
           value={newProduct.title}
           onChange={handleChange}
           type="text"
-          placeholder="Nom"
+          placeholder="Nom du produit (ex: Super Burger)"
         />
         <input
           name="imageSource"
           value={newProduct.imageSource}
           onChange={handleChange}
           type="text"
-          placeholder="Image URL"
+          placeholder="Lien URL d'une image (ex: hhtps://la-photo-de-mon-produit.png)"
         />
         <input
           name="price"
