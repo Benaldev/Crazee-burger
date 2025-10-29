@@ -12,6 +12,6 @@ export default React.createContext({
 
   menu: [],
   handleAdd: () => {},
-
   handleDelete: () => {},
+  resetMenu: () => {},
 });
