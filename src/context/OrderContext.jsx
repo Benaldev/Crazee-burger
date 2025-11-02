@@ -14,4 +14,7 @@ export default React.createContext({
   handleAdd: () => {},
   handleDelete: () => {},
   resetMenu: () => {},
+
+  newProduct: [],
+  setNewProduct: () => {},
 });

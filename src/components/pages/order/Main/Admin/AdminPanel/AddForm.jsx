@@ -9,7 +9,7 @@ import { theme } from "../../../../../../theme/index.js";
 import TextInput from "../../../../../reusable-ui/TextInput.jsx";
 import Button from "../../../../../reusable-ui/Button.jsx";
 
-const EMPTY_PRODUCT = {
+export const EMPTY_PRODUCT = {
   id: "",
   title: "",
   imageSource: "",
@@ -18,8 +18,7 @@ const EMPTY_PRODUCT = {
 
 export default function AddForm() {
   //state
-  const { handleAdd } = useContext(OrderContext);
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   //comportements
