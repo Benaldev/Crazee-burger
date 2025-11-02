@@ -1,13 +1,11 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../../context/OrderContext.jsx";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 import TextInput from "../../../../../reusable-ui/TextInput.jsx";
 import Button from "../../../../../reusable-ui/Button.jsx";
 import ImagePreview from "./ImagePreview.jsx";
 import SubmitMessage from "./SubmitMessage.jsx";
+import { getInputTextsConfig } from "./inputTextConfig.jsx";
 
 export const EMPTY_PRODUCT = {
   id: "",
@@ -47,6 +45,8 @@ export default function AddForm() {
     }, 2000);
   };
 
+  const inputTexts = getInputTextsConfig(newProduct);
+
   //affichage
   return (
     <AddFormStyled onSubmit={handleSubmit}>
@@ -54,34 +54,15 @@ export default function AddForm() {
         imageSource={newProduct.imageSource}
         title={newProduct.title}
       />
-      <div className="inputs-fields">
-        <TextInput
-          name="title"
-          value={newProduct.title}
-          onChange={handleChange}
-          type="text"
-          placeholder="Nom du produit (ex: Super Burger)"
-          Icon={<FaHamburger />}
-          version={"minimalist"}
-        />
-        <TextInput
-          name="imageSource"
-          value={newProduct.imageSource}
-          onChange={handleChange}
-          type="text"
-          placeholder="Lien URL d'une image (ex: hhtps://la-photo-de-mon-produit.png)"
-          Icon={<BsFillCameraFill />}
-          version={"minimalist"}
-        />
-        <TextInput
-          name="price"
-          value={newProduct.price ? newProduct.price : ""}
-          onChange={handleChange}
-          type="text"
-          placeholder="Prix"
-          Icon={<MdOutlineEuro />}
-          version={"minimalist"}
-        />
+      <div className="input-fields">
+        {inputTexts.map((input) => (
+          <TextInput
+            {...input}
+            key={input.id}
+            onChange={handleChange}
+            version="minimalist"
+          />
+        ))}
       </div>
       <div className="submit">
         <Button
@@ -104,7 +85,7 @@ const AddFormStyled = styled.form`
   grid-row-gap: 8px;
   grid-column-gap: 20px;
 
-  .inputs-fields {
+  .input-fields {
     grid-area: 1 / 2 / 4 / 3;
 
     display: grid;
