@@ -7,9 +7,14 @@ export default React.createContext({
   isCollapsed: false,
   setIsCollapsed: () => {},
 
-  isAddSelected: false,
-  setIsAddSelected: () => {},
+  currentTabSelected: false,
+  setCurrentTabSelected: () => {},
 
-  isEditSelected: false,
-  setIsEditSelected: () => {},
+  menu: [],
+  handleAdd: () => {},
+  handleDelete: () => {},
+  resetMenu: () => {},
+
+  newProduct: [],
+  setNewProduct: () => {},
 });

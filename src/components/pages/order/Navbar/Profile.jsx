@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from "../../../../theme/index";
 
 export default function Profile() {
-  const { username } = useParams;
+  const { username } = useParams();
 
   return (
     <ProfileStyled>
