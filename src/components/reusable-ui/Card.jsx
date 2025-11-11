@@ -9,9 +9,10 @@ export default function Card({
   leftDescription,
   hasDeleteButton,
   onDelete,
+  onClick,
 }) {
   return (
-    <CardSyled className="produit">
+    <CardSyled className="produit" onClick={onClick}>
       {hasDeleteButton && (
         <button
           className="delete-button"
