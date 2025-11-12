@@ -19,10 +19,10 @@ export default function Menu() {
   }
 
   const handleClick = (idProductClicked) => {
-    const productSelected = menu.find((produit) => {
+    const productClickedOn = menu.find((produit) => {
       return produit.id === idProductClicked;
     });
-    setProductSelected(productSelected);
+    setProductSelected(productClickedOn);
   };
 
   return (
