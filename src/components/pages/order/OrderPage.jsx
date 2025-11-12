@@ -6,6 +6,7 @@ import { useState } from "react";
 import OrderContext from "../../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/array";
 
 export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(true);
@@ -16,13 +17,13 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
   const handleAdd = (newProduct) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const menuCopy = deepClone(menu);
     const menuUpdated = [newProduct, ...menuCopy];
     setMenu(menuUpdated);
   };
 
   const handleDelete = (idOfProductToDelelte) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const menuCopy = deepClone(menu);
 
     const menuUpdated = menuCopy.filter(
       (product) => product.id !== idOfProductToDelelte
@@ -32,7 +33,7 @@ export default function OrderPage() {
   };
 
   const handleEdit = (productBeigEdited) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const menuCopy = deepClone(menu);
 
     const indexOfProductToEdit = menu.findIndex(
       (product) => product.id === productBeigEdited.id
