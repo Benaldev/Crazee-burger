@@ -20,17 +20,18 @@ export default function Menu() {
     productSelected,
   } = useContext(OrderContext);
 
-  if (menu.length === 0) {
-    if (!isModeAdmin) return <EmptyMenuClient />;
-    return <EmptyMenuAdmin onReset={resetMenu} />;
-  }
-
   const handleClick = (idProductClicked) => {
+    if (!isModeAdmin) return;
     const productClickedOn = menu.find((produit) => {
       return produit.id === idProductClicked;
     });
     setProductSelected(productClickedOn);
   };
+
+  if (menu.length === 0) {
+    if (!isModeAdmin) return <EmptyMenuClient />;
+    return <EmptyMenuAdmin onReset={resetMenu} />;
+  }
 
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
