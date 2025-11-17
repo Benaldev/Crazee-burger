@@ -3,11 +3,13 @@ import { theme } from "../../../../../../theme/index.js";
 import { useContext } from "react";
 import OrderContext from "../../../../../../context/OrderContext.jsx";
 import { getTabsConfig, getTabSelected } from "../getTabsConfig.jsx";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
 
 export default function AdminPanel() {
-  const { currentTabSelected } = useContext(OrderContext);
+  const { currentTabSelected, productSelected } = useContext(OrderContext);
 
-  const tabs = getTabsConfig(currentTabSelected);
+  const hasAlreadyBeenClicked = productSelected !== EMPTY_PRODUCT;
+  const tabs = getTabsConfig(hasAlreadyBeenClicked);
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return (

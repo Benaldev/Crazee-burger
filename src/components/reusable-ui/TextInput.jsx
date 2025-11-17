@@ -1,21 +1,28 @@
+import React from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../theme/index";
 
-export default function TextInput({
-  value,
-  onChange,
-  Icon,
-  className,
-  version = "normal",
-  ...extraProps
-}) {
-  return (
-    <TextInputStyled className={className} version={version}>
-      <div className="icon">{Icon && Icon}</div>
-      <input type="text" value={value} onChange={onChange} {...extraProps} />
-    </TextInputStyled>
-  );
-}
+const TextInput = React.forwardRef(
+  (
+    { value, onChange, Icon, className, version = "normal", ...extraProps },
+    ref
+  ) => {
+    return (
+      <TextInputStyled className={className} version={version}>
+        <div className="icon">{Icon && Icon}</div>
+        <input
+          ref={ref}
+          type="text"
+          value={value}
+          onChange={onChange}
+          {...extraProps}
+        />
+      </TextInputStyled>
+    );
+  }
+);
+
+export default TextInput;
 
 const TextInputStyled = styled.div`
   border-radius: ${theme.borderRadius.round};
