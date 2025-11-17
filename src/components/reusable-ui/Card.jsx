@@ -17,8 +17,8 @@ export default function Card({
     <CardSyled
       className="produit"
       onClick={onClick}
-      isHoverable={isHoverable}
-      isSelected={isSelected}
+      $isHoverable={isHoverable}
+      $isSelected={isSelected}
     >
       <div className="card">
         {hasDeleteButton && (
@@ -52,7 +52,7 @@ export default function Card({
 }
 
 const CardSyled = styled.div`
-  ${(props) => props.isHoverable && hoverableStyle}
+  ${(props) => props.$isHoverable && hoverableStyle}
   border-radius: ${theme.borderRadius.extraRound};
   height: 330px;
 
@@ -160,8 +160,8 @@ const CardSyled = styled.div`
       }
     }
 
-    ${({ isHoverable, isSelected }) =>
-      isHoverable && isSelected && selectedStyle}
+    ${({ $isHoverable, $isSelected }) =>
+      $isHoverable && $isSelected && selectedStyle}
   }
 `;
 
