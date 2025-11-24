@@ -23,4 +23,6 @@ export default React.createContext({
   setProductSelected: () => {},
 
   titleEditRef: {},
+
+  basket: [],
 });
