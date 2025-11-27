@@ -25,4 +25,5 @@ export default React.createContext({
   titleEditRef: {},
 
   basket: [],
+  handleAddToBasket: () => {},
 });

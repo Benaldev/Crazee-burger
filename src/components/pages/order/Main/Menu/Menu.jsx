@@ -8,6 +8,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT, IMAGE_COMING_SOON } from "../../../../../enums/product";
+import { find } from "../../../../../utils/array";
 
 export default function Menu() {
   const {
@@ -27,9 +28,7 @@ export default function Menu() {
 
     await setIsCollapsed(false);
     await setCurrentTabSelected("edit");
-    const productClickedOn = menu.find((produit) => {
-      return produit.id === idProductClicked;
-    });
+    const productClickedOn = find(idProductClicked, menu);
     await setProductSelected(productClickedOn);
     titleEditRef.current.focus();
   };
@@ -47,6 +46,12 @@ export default function Menu() {
     titleEditRef.current.focus();
   };
 
+  const handleAddButton = (event, idProductToAdd) => {
+    event.stopPropagation();
+    const productToAdd = find(idProductToAdd, menu);
+    handleAddToBasket(productToAdd);
+  };
+
   return (
     <MenuStyled className="menu">
       {menu.map(({ title, id, imageSource, price }) => {
@@ -61,6 +66,7 @@ export default function Menu() {
             onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
             isSelected={checkIfProductIsClicked(id, productSelected.id)}
+            onAdd={(event) => handleAddButton(event, id)}
           />
         );
       })}
