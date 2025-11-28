@@ -21,6 +21,7 @@ export default function Menu() {
     setIsCollapsed,
     setCurrentTabSelected,
     titleEditRef,
+    handleAddToBasket,
   } = useContext(OrderContext);
 
   const handleClick = async (idProductClicked) => {
