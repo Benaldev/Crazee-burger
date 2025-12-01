@@ -22,6 +22,7 @@ export default function Menu() {
     setCurrentTabSelected,
     titleEditRef,
     handleAddToBasket,
+    handleDeleteBasketProduct,
   } = useContext(OrderContext);
 
   const handleClick = async (idProductClicked) => {
@@ -42,6 +43,7 @@ export default function Menu() {
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
     handleDelete(idProductToDelete);
+    handleDeleteBasketProduct(idProductToDelete);
     idProductToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT);
     titleEditRef.current.focus();
