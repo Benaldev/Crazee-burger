@@ -8,7 +8,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT, IMAGE_COMING_SOON } from "../../../../../enums/product";
-import { findObjectById, isEmpty } from "../../../../../utils/array";
+import { isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
   const {
@@ -18,27 +18,10 @@ export default function Menu() {
     resetMenu,
     setProductSelected,
     productSelected,
-    setIsCollapsed,
-    setCurrentTabSelected,
-    titleEditRef,
     handleAddToBasket,
     handleDeleteBasketProduct,
+    handleProductSelected,
   } = useContext(OrderContext);
-
-  const handleClick = async (idProductClicked) => {
-    if (!isModeAdmin) return;
-
-    await setIsCollapsed(false);
-    await setCurrentTabSelected("edit");
-    const productClickedOn = findObjectById(idProductClicked, menu);
-    await setProductSelected(productClickedOn);
-    titleEditRef.current.focus();
-  };
-
-  if (isEmpty(menu) === 0) {
-    if (!isModeAdmin) return <EmptyMenuClient />;
-    return <EmptyMenuAdmin onReset={resetMenu} />;
-  }
 
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
@@ -46,13 +29,17 @@ export default function Menu() {
     handleDeleteBasketProduct(idProductToDelete);
     idProductToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT);
-    titleEditRef.current.focus();
   };
 
   const handleAddButton = (event, idProductToAdd) => {
     event.stopPropagation();
     handleAddToBasket(idProductToAdd);
   };
+
+  if (isEmpty(menu) === 0) {
+    if (!isModeAdmin) return <EmptyMenuClient />;
+    return <EmptyMenuAdmin onReset={resetMenu} />;
+  }
 
   return (
     <MenuStyled className="menu">
@@ -65,7 +52,7 @@ export default function Menu() {
             leftDescription={formatPrice(price)}
             hasDeleteButton={isModeAdmin}
             onDelete={(event) => handleCardDelete(event, id)}
-            onClick={() => handleClick(id)}
+            onClick={isModeAdmin ? () => handleProductSelected(id) : null}
             isHoverable={isModeAdmin}
             isSelected={checkIfProductIsClicked(id, productSelected.id)}
             onAdd={(event) => handleAddButton(event, id)}
