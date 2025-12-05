@@ -21,6 +21,7 @@ export default React.createContext({
 
   productSelected: {},
   setProductSelected: () => {},
+  handleProductSelected: () => {},
 
   titleEditRef: {},
 
