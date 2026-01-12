@@ -21,9 +21,20 @@ export const createUser = (userId) => {
   //NOURRITURE
   const newDoc = {
     username: userId,
-    menu: fakeMenu.LARGE,
+    menu: fakeMenu.SMALL,
   };
 
   //setDoc(CACHETTE, NOURRITURE);
   setDoc(docRef, newDoc);
+};
+
+export const authentificateUser = async (userId) => {
+  //1. Récuperer un existingUser
+  const existingUser = await getUser(userId);
+  console.log("existing user", existingUser);
+
+  //2. sinon créer un newUser
+  if (!existingUser) {
+    createUser(userId);
+  }
 };

@@ -6,19 +6,22 @@ import { BsPersonCircle } from "react-icons/bs";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
+import { authentificateUser } from "../../../api/user";
 
 export default function LoginForm() {
-  const [inputValue, setInputValue] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setInputValue("");
-    navigate(`order/${inputValue}`);
+
+    authentificateUser(username);
+    setUsername("");
+    navigate(`order/${username}`);
   };
 
   const handleChange = (event) => {
-    setInputValue(event.target.value);
+    setUsername(event.target.value);
   };
 
   return (
@@ -27,7 +30,7 @@ export default function LoginForm() {
       <hr />
       <h2>Connectez-vous</h2>
       <TextInput
-        value={inputValue}
+        value={username}
         onChange={handleChange}
         placeholder={"Entrez votre prénom"}
         required
