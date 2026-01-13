@@ -7,6 +7,7 @@ import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { authentificateUser } from "../../../api/user";
+import Welcome from "./Welcome";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
@@ -26,9 +27,7 @@ export default function LoginForm() {
 
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-      <h1>Bienvenue chez nous !</h1>
-      <hr />
-      <h2>Connectez-vous</h2>
+      <Welcome />
       <TextInput
         value={username}
         onChange={handleChange}
