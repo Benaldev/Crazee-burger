@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 import { getMenu } from "../../../api/product";
 
 export default function OrderPage() {
-  const [isModeAdmin, setIsModeAdmin] = useState(true);
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
@@ -33,7 +33,6 @@ export default function OrderPage() {
 
   const initialiseMenu = async () => {
     const menuReceived = await getMenu(username);
-    console.log("menuReceived", menuReceived);
     setMenu(menuReceived);
   };
 
