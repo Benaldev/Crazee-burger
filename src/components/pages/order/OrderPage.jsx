@@ -40,7 +40,9 @@ export default function OrderPage() {
 
   const initialiseBasket = () => {
     const basketReceived = getLocalStorage(username);
-    setBasket(basketReceived);
+    if (basketReceived) {
+      setBasket(basketReceived);
+    }
   };
 
   useEffect(() => {
