@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css, keyframes } from "styled-components";
 import { theme } from ".";
 
 export const basketAnimation = css`
@@ -43,4 +43,17 @@ export const basketAnimation = css`
       transition: ${theme.animations.speed.quick};
     }
   }
+`;
+
+export const fadeInFromBottom = keyframes`
+  0%{
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100%{
+    transform: translateY(0%);
+    opacity: 1;
+  }
+
 `;
